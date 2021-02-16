@@ -1,9 +1,9 @@
 import { createStyles, makeStyles } from "@material-ui/core";
 
-const useStyles = makeStyles(() =>
+const useStyles = makeStyles(({ spacing }) =>
   createStyles({
     root: {
-      backgroundColor: "red",
+      padding: spacing(1),
     },
   })
 );

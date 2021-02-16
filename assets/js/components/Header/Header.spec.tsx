@@ -1,12 +1,11 @@
 import React from "react";
 import { render } from "@testing-library/react";
 import Header from "./Header.component";
-import "@testing-library/jest-dom/extend-expect";
 
 describe("<Header />", () => {
-  it("renders", () => {
+  it("show header text", () => {
     const { getByText } = render(<Header />);
 
-    expect(getByText("theRush")).toBeInTheDocument();
+    expect(getByText("Players")).toBeInTheDocument();
   });
 });

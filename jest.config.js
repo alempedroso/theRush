@@ -5,5 +5,6 @@ module.exports = {
    'utils', // a utility folder
     __dirname, // the root directory
   ],
+  setupFilesAfterEnv: ['<rootDir>/jest.setup.js']
   // ... other options ...
 }

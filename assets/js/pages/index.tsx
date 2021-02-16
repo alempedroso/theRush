@@ -1,7 +1,7 @@
 import * as React from "react";
 import { RouteComponentProps } from "react-router-dom";
-import Main from "../components/Main";
+import TableContainer from "../components/Table/TableContainer/TableContainer.component";
 
-const HomePage: React.FC<RouteComponentProps> = () => <Main>dale</Main>;
+const HomePage: React.FC<RouteComponentProps> = () => <TableContainer />;
 
 export default HomePage;
