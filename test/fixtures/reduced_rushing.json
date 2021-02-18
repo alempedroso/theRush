@@ -1,0 +1,36 @@
+[
+  {
+    "Player":"Joe Banyard",
+    "Team":"JAX",
+    "Pos":"RB",
+    "Att":2,
+    "Att/G":2,
+    "Yds":7,
+    "Avg":3.5,
+    "Yds/G":7,
+    "TD":0,
+    "Lng":"7",
+    "1st":0,
+    "1st%":0,
+    "20+":0,
+    "40+":0,
+    "FUM":0
+  },
+  {
+    "Player":"Coby Fleener",
+    "Team":"NO",
+    "Pos":"TE",
+    "Att":1,
+    "Att/G":0.1,
+    "Yds":2,
+    "Avg":2,
+    "Yds/G":0.1,
+    "TD":1,
+    "Lng":"2T",
+    "1st":1,
+    "1st%":100,
+    "20+":0,
+    "40+":0,
+    "FUM":0
+  }
+]
