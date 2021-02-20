@@ -13,10 +13,6 @@ defmodule TheRushWeb.Router do
     plug :accepts, ["json"]
   end
 
-  scope "/api", TheRushWeb do
-    pipe_through :api
-  end
-
   if Mix.env() in [:dev, :test] do
     import Phoenix.LiveDashboard.Router
 
@@ -24,6 +20,12 @@ defmodule TheRushWeb.Router do
       pipe_through :browser
       live_dashboard "/dashboard", metrics: TheRushWeb.Telemetry
     end
+  end
+
+  scope "/api", TheRushWeb.Api do
+    pipe_through :api
+
+    get "/players", PlayerController, :index
   end
 
   scope "/", TheRushWeb do
