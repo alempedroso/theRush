@@ -1,4 +1,5 @@
 defmodule TheRush.ImportPlayerService do
+  require Logger
   alias TheRush.{ Player, PlayerParser, Repo }
 
   @spec import_players_from_file(String.t()) :: :ok
@@ -11,10 +12,19 @@ defmodule TheRush.ImportPlayerService do
 
   defp import_to_database(players) do
     Repo.insert_all(Player, get_parsed_players(players))
+    |> print_result
   end
 
   defp get_parsed_players(players) do
     players
     |> Enum.map(&PlayerParser.raw_player_to_structured_player/1)
+  end
+
+  defp print_result({modified_entries, _}) when is_number(modified_entries) do
+    Logger.info("Successfully inserted #{modified_entries} entries at the database")
+  end
+
+  defp print_result(_) do
+    Logger.warn("Error inserting at the database")
   end
 end
