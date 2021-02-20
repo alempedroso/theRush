@@ -11,12 +11,24 @@ defmodule TheRush.Player.PlayerSearchRepository do
     order_by: order_by,
     order_by_direction: order_by_direction
   }) do
-    Player
-    |> filter_by_player_name(player_name)
-    |> include_order_by(order_by, order_by_direction)
-    |> limit(^page_limit)
-    |> offset(^(page * page_limit))
-    |> Repo.all
+    query =
+      Player
+      |> filter_by_player_name(player_name)
+      |> include_order_by(order_by, order_by_direction)
+      |> limit(^page_limit)
+      |> offset(^(page * page_limit))
+
+    %{
+      players: Repo.all(query),
+      players_count: fetch_count(query)
+    }
+  end
+
+  defp fetch_count(query) do
+    query
+    |> exclude(:limit)
+    |> exclude(:offset)
+    |> Repo.aggregate(:count)
   end
 
   defp filter_by_player_name(query, nil), do: query

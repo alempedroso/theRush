@@ -1,11 +1,14 @@
 defmodule TheRushWeb.Api.PlayerView do
   use TheRushWeb, :view
 
-  def render("index.json", %{players: players}) do
-    %{players: render_many(players, TheRushWeb.Api.PlayerView, "page.json")}
+  def render("index.json", %{result: %{players: players, players_count: players_count}}) do
+    %{
+      players: render_many(players, TheRushWeb.Api.PlayerView, "player.json"),
+      players_count: players_count
+    }
   end
 
-  def render("page.json", %{player: player}) do
+  def render("player.json", %{player: player}) do
     %{
       longest_rush: player.longest_rush,
       longest_rush_takedown: player.longest_rush_takedown,

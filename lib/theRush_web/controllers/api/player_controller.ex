@@ -13,7 +13,7 @@ defmodule TheRushWeb.Api.PlayerController do
         {:error, invalid_changeset}
 
       valid_changeset ->
-        render(conn, "index.json", players: get_players(valid_changeset))
+        render(conn, "index.json", result: get_players(valid_changeset))
     end
   end
 

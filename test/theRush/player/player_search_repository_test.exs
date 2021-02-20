@@ -13,10 +13,11 @@ defmodule Player.PlayerSearchRepositoryTest do
 
   describe "when filtering by name" do
     test "gets only player with given name" do
-      players = PlayerSearchRepository.search(
+      %{players: players, players_count: players_count} = PlayerSearchRepository.search(
         Map.merge(@default_params, %PlayerSearch{ player_name: "coby" })
       )
 
+      assert players_count == 1
       assert Enum.count(players) == 1
       assert Map.get(List.first(players), :name) =~ "Coby"
     end
@@ -24,10 +25,11 @@ defmodule Player.PlayerSearchRepositoryTest do
 
   describe "when using order_by" do
     test "gets players ordered by given field" do
-      players = PlayerSearchRepository.search(
+      %{players: players, players_count: players_count} = PlayerSearchRepository.search(
         Map.merge(@default_params, %PlayerSearch{ order_by: "total_rushing_takedowns", order_by_direction: "desc" })
       )
 
+      assert players_count == 2
       assert Enum.count(players) == 2
       assert Map.get(List.first(players), :name) =~ "Coby"
       assert Map.get(Enum.fetch!(players, 1), :name) =~ "Joe"
@@ -36,10 +38,11 @@ defmodule Player.PlayerSearchRepositoryTest do
 
   describe "when using limit" do
     test "gets maximum player as given limit" do
-      players = PlayerSearchRepository.search(
+      %{players: players, players_count: players_count} = PlayerSearchRepository.search(
         Map.merge(@default_params, %PlayerSearch{ limit: 1 })
       )
 
+      assert players_count == 2
       assert Enum.count(players) == 1
       assert Map.get(List.first(players), :name) =~ "Joe"
     end
@@ -47,10 +50,11 @@ defmodule Player.PlayerSearchRepositoryTest do
 
   describe "when using offset different than 0" do
     test "gets next page of players" do
-      players = PlayerSearchRepository.search(
+      %{players: players, players_count: players_count} = PlayerSearchRepository.search(
         Map.merge(@default_params, %PlayerSearch{ limit: 1, page: 1 })
       )
 
+      assert players_count == 2
       assert Enum.count(players) == 1
       assert Map.get(List.first(players), :name) =~ "Coby"
     end
