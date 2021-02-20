@@ -1,4 +1,4 @@
-defmodule TheRush.Player do
+defmodule TheRush.Player.Player do
   use Ecto.Schema
   import Ecto.Changeset
 

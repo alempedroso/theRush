@@ -1,6 +1,7 @@
-defmodule TheRush.ImportPlayerService do
+defmodule TheRush.Player.ImportService do
   require Logger
-  alias TheRush.{ Player, PlayerParser, Repo }
+  alias TheRush.Repo
+  alias TheRush.Player.{ Player, Parser }
 
   @spec import_players_from_file(String.t()) :: :ok
   def import_players_from_file(file_name) do
@@ -17,7 +18,7 @@ defmodule TheRush.ImportPlayerService do
 
   defp get_parsed_players(players) do
     players
-    |> Enum.map(&PlayerParser.raw_player_to_structured_player/1)
+    |> Enum.map(&Parser.raw_player_to_structured_player/1)
   end
 
   defp print_result({modified_entries, _}) when is_number(modified_entries) do

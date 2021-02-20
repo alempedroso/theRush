@@ -1,6 +1,6 @@
-defmodule PlayerParserTest do
+defmodule Player.ParserTest do
   use ExUnit.Case, async: true
-  alias TheRush.PlayerParser
+  alias TheRush.Player.Parser
 
   @base_raw_player %{
     "Player" => "Eddie Lacy",
@@ -37,7 +37,7 @@ defmodule PlayerParserTest do
         "FUM" => "0"
       })
 
-      result = PlayerParser.raw_player_to_structured_player(raw_player)
+      result = Parser.raw_player_to_structured_player(raw_player)
 
       assert Map.get(result, :longest_rush) == 31
       assert Map.get(result, :rushing_attempts) == 71
@@ -63,7 +63,7 @@ defmodule PlayerParserTest do
         "1st%" => 21
       })
 
-      result = PlayerParser.raw_player_to_structured_player(raw_player)
+      result = Parser.raw_player_to_structured_player(raw_player)
 
       assert Map.get(result, :rushing_attempts_per_game_avg) == 14.0
       assert Map.get(result, :rushing_first_down_percentage) == 21.0
@@ -78,7 +78,7 @@ defmodule PlayerParserTest do
         "Lng" => "71T",
       })
 
-      result = PlayerParser.raw_player_to_structured_player(raw_player)
+      result = Parser.raw_player_to_structured_player(raw_player)
 
       assert Map.get(result, :longest_rush) == 71
       assert Map.get(result, :longest_rush_takedown) == true
@@ -91,7 +91,7 @@ defmodule PlayerParserTest do
         "Lng" => "71",
       })
 
-      result = PlayerParser.raw_player_to_structured_player(raw_player)
+      result = Parser.raw_player_to_structured_player(raw_player)
 
       assert Map.get(result, :longest_rush) == 71
       assert Map.get(result, :longest_rush_takedown) == false
@@ -104,7 +104,7 @@ defmodule PlayerParserTest do
         "Lng" => 71,
       })
 
-      result = PlayerParser.raw_player_to_structured_player(raw_player)
+      result = Parser.raw_player_to_structured_player(raw_player)
 
       assert Map.get(result, :longest_rush) == 71
       assert Map.get(result, :longest_rush_takedown) == false
@@ -112,7 +112,7 @@ defmodule PlayerParserTest do
   end
 
   test "includes timestamp" do
-    result = PlayerParser.raw_player_to_structured_player(@base_raw_player)
+    result = Parser.raw_player_to_structured_player(@base_raw_player)
 
     assert %NaiveDateTime{} = Map.get(result, :inserted_at)
     assert %NaiveDateTime{} = Map.get(result, :updated_at)

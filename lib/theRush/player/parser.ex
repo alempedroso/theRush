@@ -1,4 +1,4 @@
-defmodule TheRush.PlayerParser do
+defmodule TheRush.Player.Parser do
   def raw_player_to_structured_player(raw_player) do
     %{
       longest_rush: get_longest_rush(raw_player["Lng"]),
