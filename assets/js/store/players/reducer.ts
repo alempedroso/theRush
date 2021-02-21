@@ -9,10 +9,13 @@ export const PlayersActions = Object.freeze({
 
 export type PlayersState = Partial<{
   players: Player[];
-  total: number;
+  players_count: number;
 }>;
 
-const playersInitialState = {};
+const playersInitialState = {
+  players: [],
+  players_count: 0,
+};
 
 const playersReducer: Reducer<PlayersState, ReduxAction<PlayersState>> = (
   state: PlayersState = playersInitialState,

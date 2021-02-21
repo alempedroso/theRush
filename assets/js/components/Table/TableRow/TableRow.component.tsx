@@ -12,6 +12,7 @@ export const rowKeys = [
   "rushing_yards_per_game",
   "total_rushing_takedowns",
   "longest_rush",
+  "longest_rush_takedown",
   "rushing_first_downs",
   "rushing_first_down_percentage",
   "rushing_twenty_plus_yards",
@@ -28,7 +29,7 @@ const TableRowComponent: React.FC<any> = ({ row }) => {
           role="cell"
           align={isNaN(Number(row[key])) ? "left" : "right"}
         >
-          {row[key]}
+          {String(row[key])}
         </TableCell>
       ))}
     </TableRow>

@@ -9,6 +9,7 @@ export type Player = {
   rushing_yards_per_game: number;
   total_rushing_takedowns: number;
   longest_rush: number;
+  longest_rush_takedown: boolean;
   rushing_first_downs: number;
   rushing_first_down_percentage: number;
   rushing_twenty_plus_yards: number;

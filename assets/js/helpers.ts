@@ -9,6 +9,7 @@ export const convertRawDataToFormattedData = (rawData) => ({
   rushing_yards_per_game: rawData["Yds/G"],
   total_rushing_takedowns: rawData.TD,
   longest_rush: rawData.Lng,
+  longest_rush_takedown: String(rawData.Lng).slice(-1) === "T",
   rushing_first_downs: rawData["1st"],
   rushing_first_down_percentage: rawData["1st%"],
   rushing_twenty_plus_yards: rawData["20+"],

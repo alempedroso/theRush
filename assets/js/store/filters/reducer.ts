@@ -10,15 +10,16 @@ export const FiltersActions = Object.freeze({
 });
 
 export type FiltersState = Partial<{
-  orderBy: string;
-  currentPage: number;
-  playersPerPage: number;
-  playerName: string;
+  order_by: string;
+  order_by_direction: string;
+  page: number;
+  limit: number;
+  player_name: string;
 }>;
 
 const filtersInitialState = {
-  currentPage: 0,
-  playersPerPage: 10,
+  page: 0,
+  limit: 10,
 };
 
 const filtersReducer: Reducer<FiltersState, ReduxAction<FiltersState>> = (
@@ -29,25 +30,28 @@ const filtersReducer: Reducer<FiltersState, ReduxAction<FiltersState>> = (
     case FiltersActions.CHANGE_PAGE:
       return {
         ...state,
-        currentPage: action.payload.currentPage,
+        page: action.payload.page,
       };
 
     case FiltersActions.CHANGE_PLAYERS_PER_PAGE:
       return {
         ...state,
-        playersPerPage: action.payload.playersPerPage,
+        limit: action.payload.limit,
+        page: 0,
       };
 
     case FiltersActions.SET_ORDER:
       return {
         ...state,
-        orderBy: action.payload.orderBy,
+        order_by: action.payload.order_by,
+        order_by_direction: action.payload.order_by_direction,
       };
 
     case FiltersActions.FILTER_PLAYER:
       return {
         ...state,
-        playerName: action.payload.playerName,
+        player_name: action.payload.player_name,
+        page: 0,
       };
 
     case FiltersActions.RESET_FILTERS:
