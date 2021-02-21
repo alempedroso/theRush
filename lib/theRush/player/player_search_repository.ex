@@ -24,6 +24,42 @@ defmodule TheRush.Player.PlayerSearchRepository do
     }
   end
 
+  def export(%PlayerSearch{
+    player_name: player_name,
+    order_by: order_by,
+    order_by_direction: order_by_direction
+  }, conn) do
+    query =
+      Player
+      |> filter_by_player_name(player_name)
+      |> include_order_by(order_by, order_by_direction)
+
+    {sql_string, params} = Repo.to_sql(:all, query)
+
+    parsed_string = params
+    |> Enum.with_index
+    |> Enum.reduce(sql_string, fn ({value, index}, acc) ->
+      String.replace(acc, "$#{index+1}", "'#{value}'")
+    end)
+
+    export_query_stream(parsed_string, conn)
+  end
+
+  defp export_query_stream(sql_query_string, conn) do
+    Repo.transaction(fn ->
+      Ecto.Adapters.SQL.stream(Repo, "COPY (#{sql_query_string}) TO STDOUT WITH CSV HEADER DELIMITER ','")
+      |> Stream.map(&(&1.rows))
+      |> Enum.reduce_while(conn, fn (data, conn) ->
+        case Plug.Conn.chunk(conn, data) do
+          {:ok, conn} ->
+            {:cont, conn}
+          {:error, :closed} ->
+            {:halt, conn}
+        end
+      end)
+    end)
+  end
+
   defp fetch_count(query) do
     query
     |> exclude(:limit)

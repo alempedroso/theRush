@@ -1,7 +1,6 @@
 defmodule Player.PlayerSearchRepositoryTest do
   use TheRush.DataCase, async: true
 
-  alias TheRush.Repo
   alias TheRush.Player.{ ImportService, PlayerSearch, PlayerSearchRepository }
 
   @default_params %{ limit: 10, page: 0 }

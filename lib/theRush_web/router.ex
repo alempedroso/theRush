@@ -26,6 +26,7 @@ defmodule TheRushWeb.Router do
     pipe_through :api
 
     get "/players", PlayerController, :index
+    get "/players/export", PlayerController, :export
   end
 
   scope "/", TheRushWeb do

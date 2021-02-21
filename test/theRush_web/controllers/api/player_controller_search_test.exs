@@ -1,4 +1,4 @@
-defmodule TheRushWeb.Api.PlayerControllerTest do
+defmodule TheRushWeb.Api.PlayerControllerSearchTest do
   use TheRushWeb.ConnCase
 
   alias TheRush.Player.ImportService
