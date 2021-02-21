@@ -7,8 +7,14 @@ export const client = axios.create({
   timeout: 1000,
 });
 
-export async function searchPlayer(
+export async function searchPlayers(
   params: FiltersState
 ): Promise<AxiosResponse<PlayersState>> {
   return client.get<PlayersState>("/players", { params });
+}
+
+export async function exportPlayers(
+  params: FiltersState
+): Promise<AxiosResponse<string>> {
+  return client.get<string>("/players/export", { params });
 }

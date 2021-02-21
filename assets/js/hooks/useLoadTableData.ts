@@ -1,5 +1,5 @@
 import { useDispatch, useSelector } from "react-redux";
-import { searchPlayer } from "../services/apiClient";
+import { searchPlayers } from "../services/apiClient";
 import { PlayersActions } from "../store/players/reducer";
 import { AppState } from "../store/index";
 
@@ -9,7 +9,7 @@ export const useLoadTableData = (): (() => Promise<void>) => {
 
   return async () => {
     try {
-      const { data } = await searchPlayer(filters);
+      const { data } = await searchPlayers(filters);
 
       dispatch({
         type: PlayersActions.PLAYERS_FETCHED,
