@@ -1,6 +1,16 @@
 version: '3.5'
 
 services:
+  app:
+    build: .
+    ports:
+      - "4000:4000"
+    environment:
+      - DATABASE_HOST=postgres
+    entrypoint: ["mix", "phx.server"]
+    depends_on:
+      - postgres
+
   postgres:
     image: postgres:13.2
     environment:

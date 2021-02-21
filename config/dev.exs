@@ -5,7 +5,7 @@ config :theRush, TheRush.Repo,
   username: "postgres",
   password: "postgres",
   database: "therush_dev",
-  hostname: "localhost",
+  hostname: System.get_env("DATABASE_HOST") || "localhost",
   pool_size: 10
 
 config :theRush, TheRushWeb.Endpoint,
