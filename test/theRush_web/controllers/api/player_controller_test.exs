@@ -41,7 +41,7 @@ defmodule TheRushWeb.Api.PlayerControllerTest do
       })
       %{ "errors" => errors } = json_response(conn, 422)
 
-      assert errors["limit"] == "must be less than or equal to 100"
+      assert errors["limit"] == "must be less than or equal to 50"
     end
 
     test "returns error for invalid page", %{conn: conn} do

@@ -1,5 +1,5 @@
 defmodule Player.PlayerSearchRepositoryTest do
-  use ExUnit.Case, async: true
+  use TheRush.DataCase, async: true
 
   alias TheRush.Repo
   alias TheRush.Player.{ ImportService, PlayerSearch, PlayerSearchRepository }
@@ -7,7 +7,6 @@ defmodule Player.PlayerSearchRepositoryTest do
   @default_params %{ limit: 10, page: 0 }
 
   setup do
-    :ok = Ecto.Adapters.SQL.Sandbox.checkout(Repo)
     ImportService.import_players_from_file("test/fixtures/reduced_rushing.json")
   end
 

@@ -14,7 +14,7 @@ defmodule TheRush.Player.PlayerSearch do
 
   def changeset(ch, params) do
     cast(ch, params, @fields)
-    |> validate_number(:limit, greater_than_or_equal_to: 1, less_than_or_equal_to: 100)
+    |> validate_number(:limit, greater_than_or_equal_to: 1, less_than_or_equal_to: 50)
     |> validate_number(:page, greater_than_or_equal_to: 0)
   end
 end
