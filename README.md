@@ -1,20 +1,37 @@
-# TheRush
+# theRush
+
+## Setup
 
 To start your Phoenix server:
 
-  * Install dependencies with `mix deps.get`
-  * Create and migrate your database with `mix ecto.setup`
-  * Install Node.js dependencies with `npm install` inside the `assets` directory
-  * Start Phoenix endpoint with `mix phx.server`
+```bash
+docker-compose up -d
+```
+
+Run migrations
+
+```bash
+make db/migrate
+```
+
+Import players
+
+```bash
+make db/import_players
+```
 
 Now you can visit [`localhost:4000`](http://localhost:4000) from your browser.
 
-Ready to run in production? Please [check our deployment guides](https://hexdocs.pm/phoenix/deployment.html).
+## Tests
 
-## Learn more
+Running backend tests
 
-  * Official website: https://www.phoenixframework.org/
-  * Guides: https://hexdocs.pm/phoenix/overview.html
-  * Docs: https://hexdocs.pm/phoenix
-  * Forum: https://elixirforum.com/c/phoenix-forum
-  * Source: https://github.com/phoenixframework/phoenix
+```bash
+make tests/backend
+```
+
+Running frontend tests
+
+```bash
+make tests/frontend
+```
