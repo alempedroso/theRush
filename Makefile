@@ -1,5 +1,5 @@
 db/migrate:
-	docker-compose exec app mix ecto.setup
+	docker-compose exec app mix ecto.migrate
 
 db/import_players:
 	docker-compose exec app mix import_rushing_players
