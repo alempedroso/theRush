@@ -45,6 +45,7 @@ const filtersReducer: Reducer<FiltersState, ReduxAction<FiltersState>> = (
         ...state,
         order_by: action.payload.order_by,
         order_by_direction: action.payload.order_by_direction,
+        page: 0,
       };
 
     case FiltersActions.FILTER_PLAYER:

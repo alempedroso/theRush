@@ -67,6 +67,7 @@ describe("useRefreshTable", () => {
       type: FiltersActions.FILTER_PLAYER,
       payload: {
         player_name: "joe",
+        page: 0,
       },
     },
     {
@@ -74,6 +75,7 @@ describe("useRefreshTable", () => {
       payload: {
         order_by: "longest_rush",
         order_by_direction: "desc",
+        page: 0,
       },
     },
   ])("when filters store changes with %j action", (action) => {
